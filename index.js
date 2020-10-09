@@ -1,19 +1,17 @@
-var http = require('http');
-var url = require('url');
-var mime = require('mime');
-var request = require('request');
-
-var remoteUrl = process.env.GIT_PROXY_DEST;
-if (remoteUrl === undefined) {
-    remoteUrl = 'https://raw.github.com';
-}
-
-
-http.createServer(function (req, res) {
-    console.log(remoteUrl+req.url);
-	request(remoteUrl+req.url, function (error, response, body) {
-	  	res.writeHead(response.statusCode, {'Content-Type': mime.lookup(req.url,'text/html')+';charset=utf-8'});
-		res.end(body);
-	});
-}).listen(6617, '0.0.0.0');
-console.log('Github Server running at http://0.0.0.0:6617/. Proxying to '+remoteUrl);
+<!DOCTYPE>
+<html>
+    <head>
+        <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <h1 id="qunit-header">QUnit example</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar"></div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+        <div id="qunit-fixture">test markup, will be hidden</div>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>  
+        <script type="text/javascript" src="https://raw.github.com/LarryBattle/Ratio.js/master/tests/js/Ratio-testcases.js"></script>  
+    </body>
+</html>
